@@ -90,17 +90,17 @@ def initialize_minerals():
 
 
 def initialize_weights():
-    return [1, 3, 0.1, 20, 10, 5, 5, 10, 10, 20, 21.7, 10, 50, 100, 1, 5, 25, 40, 70, 0.000001]
+    return [1, 3, 0.1, 20, 10, 5, 5, 10, 10, 20, 21.7, 10, 50, 100, 1, 5, 25, 40, 70, 0.00001]
 
 
 def load_games():
     players = []
-    try:
+    try:  # Almost Like Java
         with open('saves.txt', 'r') as save_file:
             for line in save_file:
                 data = json.loads(line.strip())
                 players.append(Player(**data))
-    except FileNotFoundError:
+    except FileNotFoundError:  # Execpt FileNotFoundError: for java
         pass
     return players
 
@@ -170,7 +170,7 @@ def refine_mineral(mineral):
 
 def handle_debt():
     if player.total_money < 0 and player.debt == 0:
-        loan = get_player_input( "You are in debt. Do you want to take a loan of £10000?", ["yes", "no"])
+        loan = get_player_input("You are in debt. Do you want to take a loan of £10000?", ["yes", "no"])
         if loan == "yes":
             player.total_money += 10000
             player.debt += 10000
@@ -186,12 +186,15 @@ def handle_tax():
 
 def pay_back_loan():
     if player.debt > 0 and player.total_money >= player.debt * 2:
-        payment = get_player_input(f"You currently owe £{player.debt}. Do you want to pay back the loan now? (£{player.debt * 2})", ["yes", "no"])
+        payment = get_player_input(
+            f"You currently owe £{player.debt}. Do you want to pay back the loan now? (£{player.debt * 2})",
+            ["yes", "no"])
         if payment == "yes":
             if player.total_money >= player.debt * 2:
                 player.total_money -= player.debt * 2
                 player.debt = 0
-                display_info("Mining Game", f"You have paid back your loan. Your total money is now £{player.total_money}.")
+                display_info("Mining Game",
+                             f"You have paid back your loan. Your total money is now £{player.total_money}.")
             else:
                 display_warning("Mining Game", "You don't have enough money to pay back the loan.")
 
@@ -239,13 +242,19 @@ def update_ui():
 
 def random_event():
     chance = random.randint(1, 100)
+    global idontknow
+    global emod
     if chance <= 25:
-        # 25% chance for a random event REMEMBER TO CHANGE BACK TO 25 NOT 100
-        event_type = random.choice(["good", "bad"])
+        event_ls = ["good","bad"]
+        event_type = random.choices(event_ls, weights=eweight, k=1)[0]
         if event_type == "good":
-             idontknow = random.randint(0, 10000)
+            idontknow = random.randint(0, 10000)
+            idontknow = idontknow * modifier
         elif event_type == "bad":
-                idontknow = random.randint(-10000, 0)
+            idontknow = random.randint(-10000, 0)
+            emode = emod * -1
+            print(emod)
+            idontknow = idontknow * emode
         event_description_good = random.choice([
             f"You found a hidden treasure! Gain {idontknow}",
             f"You found a good thing. Gain {idontknow}.",
@@ -316,25 +325,38 @@ def main_game_loop():
             display_info("Mining Game", f"Welcome back, {player.name}!")
         else:
             display_info("Mining Game", "No existing game found. Starting a new game.")
-
     def mine():
-        global last_action_time
         save_games(players)
-        if time.time() - last_action_time < MINING_INTERVAL:
-            display_info("Mining Game", "You can only mine or refine once every 10 seconds.")
-            return
 
         handle_debt()
-        handle_tax()
+        handle_tax() # Before Mine
         pay_back_loan()
         purchase_upgrades()
 
         mineral = random.choices(minerals, weights=weights, k=1)[0]
 
-        options = ["Mine", "Refine",'None']
+        options = ["Mine", "Refine", 'None']
         action = get_player_input(f"You have found {mineral.name}! What would you like to do?", options)
 
+        def elemented():
+            display_info("Mining Game", "You need a Refinery Upgrade to refine Element.")
+            display_warning("ELEMENT INFECTION", "Element Overruns Your Mine")
+            options = ["Shut down mine", "Pay for Army", "die"]
+            action = get_player_input(f"You have found {mineral.name}! What would you like to do?", options)
+            if action == "Shut down mine":
+                player.total_money -= player.total_money // 2
+            elif action == "Pay for Army":
+                player.total_money -= 500000
+                display_info("Mining Game", "You cleared the Element.")
+            elif action == "die":
+                tk.messagebox.showerror("Mining Game", "You Lose (if you get to positive ur a no life)")
+                player.total_money -= 1364386145389789789223
+                save_games(players)
+
         if action == "Mine":
+            if mineral.name == "Refined Element" and not player.refinery_upgrade:
+                elemented()
+                return
             if mineral.mineral_type == MineralType.GANGUE:
                 player.total_money -= 10000
                 display_info("Mining Game", f"Oh no! It's a gangue mineral. You lost £10,000.")
@@ -343,21 +365,7 @@ def main_game_loop():
                 last_action_time = time.time()
         elif action == "Refine":
             if mineral.name == "Refined Element" and not player.refinery_upgrade:
-                display_info("Mining Game", "You need a Refinery Upgrade to refine Element.")
-                display_warning("ELEMENT INFECTION","Element Overruns Your Mine")
-                options = ["Shut down mine","Pay for Army", "die"]
-                action = get_player_input(f"You have found {mineral.name}! What would you like to do?", options)
-                if action == "Shut down mine":
-                    player.total_money -= player.total_money //2
-                elif action == "Pay for Army":
-                    player.total_money -= 500000
-                    display_info("Mining Game", "You cleared the Element.")
-                elif action == "die":
-                    tk.messagebox.showerror("Mining Game", "You Lose (if you get to positive ur a no life)")
-                    player.total_money -= 1364386145389789789223
-                    save_games(players)
-
-
+                elemented()
                 return
             if mineral.mineral_type == MineralType.GANGUE:
                 player.total_money -= 10000
@@ -407,10 +415,11 @@ def main_game_loop():
 if __name__ == "__main__":
     MINING_INTERVAL = 10
     GPR_COST = 50000
-    CHARM_COST = 75000
+    CHARM_COST = 75000  # IDE suggestion (Define Const)
     DRILL_COST = 100000
     UPGRADE_COST = 200000
     SURVEY_COST = 150000
+    global emod
 
     players = load_games()
     player = players[-1] if players else None
@@ -424,17 +433,26 @@ if __name__ == "__main__":
 
     minerals = initialize_minerals()
     weights = initialize_weights()
-    last_action_time = 0
     match player.difficulty:
         case Difficulty.EASY:
             modifier = 2
+            eweight = [2,1]
         case Difficulty.NORMAL:
             modifier = 1
+            eweight = [1,1]
+            emod = 1
         case Difficulty.HARD:
             modifier = 0.5
+            eweight = [1,3]
+            emod = 2
         case Difficulty.EXPERT:
             modifier = 0.01
+            eweight = [1,5]
+            emod = 3
         case _:
             modifier = 1
+            eweight = [1, 1]
+            emod = 5
 
     main_game_loop()
+
