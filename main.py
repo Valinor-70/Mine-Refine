@@ -80,7 +80,6 @@ def main_game_loop():
     ui = Ui_MainWindow()
     ui.setupUi(root)
     root.show()
-    apply_dark_theme(app)
     players = load_games()
     player = players[-1] if players else None
 
