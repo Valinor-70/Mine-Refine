@@ -1,0 +1,221 @@
+[
+    {
+        "name": "Gold",
+        "value": 100000,
+        "mineral_type": "Nonetic",
+        "refined_value": 200000,
+        "weight": 5
+    },
+    {
+        "name": "Silver",
+        "value": 50000,
+        "mineral_type": "Nonetic",
+        "refined_value": 100000,
+        "weight": 10
+    },
+    {
+        "name": "Copper",
+        "value": 25000,
+        "mineral_type": "Nonetic",
+        "refined_value": 50000,
+        "weight": 15
+    },
+    {
+        "name": "Magnetite",
+        "value": 10000,
+        "mineral_type": "Magnetic",
+        "refined_value": 20000,
+        "weight": 20
+    },
+    {
+        "name": "Diamond",
+        "value": 1000000,
+        "mineral_type": "Nonetic",
+        "refined_value": 2000000,
+        "weight": 1
+    },
+    {
+        "name": "Ruby",
+        "value": 500000,
+        "mineral_type": "Nonetic",
+        "refined_value": 1000000,
+        "weight": 2
+    },
+    {
+        "name": "Emerald",
+        "value": 250000,
+        "mineral_type": "Nonetic",
+        "refined_value": 500000,
+        "weight": 3
+    },
+    {
+        "name": "Sapphire",
+        "value": 100000,
+        "mineral_type": "Nonetic",
+        "refined_value": 200000,
+        "weight": 4
+    },
+    {
+        "name": "Refined Element",
+        "value": 10000000,
+        "mineral_type": "Nonetic",
+        "refined_value": 20000000,
+        "upgrade_required": true,
+        "weight": 0.5
+    },
+    {
+        "name": "Unrefined Element",
+        "value": 5000000,
+        "mineral_type": "Nonetic",
+        "refined_value": 10000000,
+        "weight": 0.75
+    },
+    {
+        "name": "Platinum",
+        "value": 10000000,
+        "mineral_type": "Nonetic",
+        "refined_value": 20000000,
+        "weight": 0.25
+    },
+    {
+        "name": "Palladium",
+        "value": 5000000,
+        "mineral_type": "Nonetic",
+        "refined_value": 10000000,
+        "weight": 0.5
+    },
+    {
+        "name": "Rhodium",
+        "value": 2500000,
+        "mineral_type": "Nonetic",
+        "refined_value": 5000000,
+        "weight": 0.75
+    },
+    {
+        "name": "Iridium",
+        "value": 1000000,
+        "mineral_type": "Nonetic",
+        "refined_value": 2000000,
+        "weight": 1
+    },
+    {
+        "name": "Osmium",
+        "value": 500000,
+        "mineral_type": "Nonetic",
+        "refined_value": 1000000,
+        "weight": 1.5
+    },
+    {
+        "name": "Ruthenium",
+        "value": 250000,
+        "mineral_type": "Nonetic",
+        "refined_value": 500000,
+        "weight": 2
+    },
+    {
+        "name": "Palladium",
+        "value": 100000,
+        "mineral_type": "Nonetic",
+        "refined_value": 200000,
+        "weight": 2.5
+    },
+    {
+        "name": "Iridium",
+        "value": 50000,
+        "mineral_type": "Nonetic",
+        "refined_value": 100000,
+        "weight": 3
+    },
+    {
+        "name": "Osmium",
+        "value": 25000,
+        "mineral_type": "Nonetic",
+        "refined_value": 50000,
+        "weight": 3.5
+    },
+    {
+        "name": "Ruthenium",
+        "value": 10000,
+        "mineral_type": "Nonetic",
+        "refined_value": 20000,
+        "weight": 4
+    },
+    {
+        "name": "Calcite",
+        "value": 2500,
+        "mineral_type": "Gangue",
+        "refined_value": 5000,
+        "weight": 5
+    },
+    {
+        "name": "Dolomite",
+        "value": 1000,
+        "mineral_type": "Gangue",
+        "refined_value": 2000,
+        "weight": 10
+    },
+    {
+        "name": "Feldspar",
+        "value": 500,
+        "mineral_type": "Gangue",
+        "refined_value": 1000,
+        "weight": 15
+    },
+    {
+        "name": "Gypsum",
+        "value": 250,
+        "mineral_type": "Gangue",
+        "refined_value": 500,
+        "weight": 20
+    },
+    {
+        "name": "Barite",
+        "value": 100,
+        "mineral_type": "Gangue",
+        "refined_value": 200,
+        "weight": 1
+    },
+    {
+        "name": "Anhydrite",
+        "value": 50,
+        "mineral_type": "Gangue",
+        "refined_value": 100,
+        "weight": 2
+    },
+    {
+        "name": "Halite",
+        "value": 25,
+        "mineral_type": "Gangue",
+        "refined_value": 50,
+        "weight": 3
+    },
+    {
+        "name": "Sylvite",
+        "value": 10,
+        "mineral_type": "Gangue",
+        "refined_value": 20,
+        "weight": 4
+    },
+    {
+        "name": "Fluorite",
+        "value": 5,
+        "mineral_type": "Gangue",
+        "refined_value": 10,
+        "weight": 5
+    },
+    {
+        "name": "Apatite",
+        "value": 2,
+        "mineral_type": "Gangue",
+        "refined_value": 4,
+        "weight": 10
+    },
+    {
+        "name": "Baryte",
+        "value": 1,
+        "mineral_type": "Gangue",
+        "refined_value": 2,
+        "weight": 15
+    }
+]
+
