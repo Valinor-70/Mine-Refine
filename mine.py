@@ -9,7 +9,7 @@ def mine_mineral(mineral, player):
         player.total_money -= 10000
         QMessageBox.information(None, "Mining Game", f"Oh no! It's a gangue mineral. You lost £10,000.")
     else:
-        Player.total_money += mine_mineral_value(mineral, player)
+        player.total_money += mine_mineral_value(mineral, player)
         QMessageBox.information(None, "Mining Game", f"You mined {mineral.name}. Your total money is now £{player.total_money}.")
 
 def mine_mineral_value(mineral, player):
