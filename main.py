@@ -131,7 +131,7 @@ def start_new_game():
     name, ok = QInputDialog.getText(None, "Name", "What is your name?")
     difficulty, ok = QInputDialog.getText(None, "Difficulty", "Choose difficulty (Easy/Normal/Hard/Expert):")
     player = Player(name, difficulty, Rank.BEGINNER)
-    player.append(players)
+    players.append(player)
     save_games(players)
 
 def load_existing_game():
